@@ -14,16 +14,6 @@ public class SurgeryController {
         surgery.saveToDatabase(); // Guarda la cirugía en la base de datos
     }
 
-    public void updateSurgery(int surgeryId, int patientId, int roomNumber, int doctorId, Date startDate) {
-        Surgery surgery = Surgery.retrieveFromDatabase(surgeryId);
-        if (surgery != null) {
-            surgery.setPatientId(patientId);
-            surgery.setRoomNumber(roomNumber);
-            surgery.setDoctorId(doctorId);
-            surgery.setStartDate(startDate);
-            surgery.saveToDatabase(); // Actualiza la cirugía en la base de datos
-        }
-    }
 
     public void deleteSurgery(int surgeryId) {
         Surgery surgery = Surgery.retrieveFromDatabase(surgeryId);
