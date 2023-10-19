@@ -1,3 +1,4 @@
+import View.Patients;
 import View.Surgeon;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new Surgeon();
+                new Patients();
             }
         });
     }
