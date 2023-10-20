@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mariadb://localhost:3306/CRUD_Java";
+    private static final String URL = "jdbc:mariadb://localhost:3306/hospitalito";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
 

@@ -1,6 +1,4 @@
-import View.Doctors;
-import View.Patients;
-import View.Surgeon;
+import View.*;
 
 import javax.swing.*;
 
@@ -10,9 +8,7 @@ public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Surgeon();
-                new Patients();
-                new Doctors();
+                new Login();
             }
         });
     }
