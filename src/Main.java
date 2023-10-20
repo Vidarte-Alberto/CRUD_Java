@@ -9,6 +9,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new Login();
+                new Register();
             }
         });
     }
