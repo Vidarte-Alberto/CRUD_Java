@@ -1,3 +1,4 @@
+import View.Doctors;
 import View.Patients;
 import View.Surgeon;
 
@@ -11,6 +12,7 @@ public class Main {
             public void run() {
                 new Surgeon();
                 new Patients();
+                new Doctors();
             }
         });
     }

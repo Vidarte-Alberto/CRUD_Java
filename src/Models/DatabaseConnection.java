@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DatabaseConnection {
     private static final String URL = "jdbc:mariadb://localhost:3306/CRUD_Java";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "mexico12";
+    private static final String PASSWORD = "";
 
     public static Connection getConnection() {
         Connection connection = null;
