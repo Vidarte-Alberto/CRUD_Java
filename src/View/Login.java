@@ -55,7 +55,8 @@ public class Login extends JFrame implements ActionListener {
             // Llamar al método authenticate para verificar las credenciales
             if (loginController.authenticate(username, password)) {
                 JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso.");
-                new Surgeon();
+                new ModelSelector();
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Inicio de sesión fallido. Inténtalo de nuevo.");
             }

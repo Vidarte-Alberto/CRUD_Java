@@ -83,7 +83,7 @@ public class Specialities extends JFrame {
         add(new JScrollPane(listView), BorderLayout.CENTER);
         add(inputPanel, BorderLayout.SOUTH);
         add(deleteButton, BorderLayout.NORTH);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 600);
         setVisible(true);
         updateList();

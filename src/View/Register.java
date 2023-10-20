@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Controller.RegisterController;
+
 public class Register extends JFrame implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
@@ -47,10 +49,17 @@ public class Register extends JFrame implements ActionListener {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
 
-            // Agrega aquí la lógica para registrar al usuario en la base de datos
-            // Puedes utilizar un controlador similar al utilizado en la vista de inicio de sesión
+            // Llama al controlador de registro para agregar el usuario a la base de datos
+            RegisterController registerController = new RegisterController();
+            boolean registrationSuccessful = registerController.registerUser(username, password);
 
-            JOptionPane.showMessageDialog(this, "Registro exitoso.");
+            if (registrationSuccessful) {
+                JOptionPane.showMessageDialog(this, "Registro exitoso.");
+                new Login();
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error en el registro. Inténtalo de nuevo.");
+            }
         }
     }
 }
