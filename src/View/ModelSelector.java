@@ -58,8 +58,7 @@ public class ModelSelector extends JFrame implements ActionListener {
         } else if (e.getSource() == surgeriesButton) {
             new Surgeon();
         } else if (e.getSource() == prescriptionsButton) {
-            // Lógica para trabajar con recetas
-            // Abre una vista para recetas o realiza operaciones relacionadas con recetas
+            new Prescriptions();
         } else if (e.getSource() == doctorsButton) {
             new Doctors();
         } else if (e.getSource() == specialitiesButton) {
