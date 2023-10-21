@@ -1,4 +1,6 @@
 package Models;
+import View.AlertDialog;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -76,7 +78,11 @@ public class Doctor {
                 }
                 connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                if (e.getErrorCode() == 1452) {
+                    AlertDialog.showError("Error de clave externa (1452) - Detalles:" + "\nEspecialidad: " + specialityId + "\nLa cirugía que intentas agregar no se puede dado que alguno de los valores no existe");
+                } else {
+                    AlertDialog.showError(e.getMessage());
+                }
             }
         }
     }

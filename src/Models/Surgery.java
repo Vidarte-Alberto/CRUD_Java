@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+import View.AlertDialog;
+
 public class Surgery {
     private int surgeryId;  // No necesitas generar el ID aquí
     private int patientId;
@@ -32,7 +34,6 @@ public class Surgery {
                     statement.setInt(3, doctorId);
                     statement.setDate(4, new java.sql.Date(startDate.getTime()));
                     statement.setInt(5, surgeryId); // Específicamos el ID de cirugía a actualizar
-
                     statement.executeUpdate();
                     statement.close();
                 } else {
@@ -56,7 +57,12 @@ public class Surgery {
                 }
                 connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                if (e.getErrorCode() == 1452) {
+                    AlertDialog.showError("Error de clave externa (1452) - Detalles:" + "\nID de paciente: " + patientId + "\nNúmero de sala: " + roomNumber + "\nID del doctor: " + doctorId + "\nFecha de inicio: " + startDate + "\nLa cirugía que intentas agregar no se puede dado que alguno de los valores no existe");
+                } else {
+                    AlertDialog.showError(e.getMessage());
+                }
+
             }
         }
     }

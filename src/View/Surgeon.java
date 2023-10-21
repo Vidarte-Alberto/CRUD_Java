@@ -23,7 +23,7 @@ public class Surgeon extends JFrame {
     private SurgeryController controller;
 
     public Surgeon() {
-        super("CRUD Interface");
+        super("Surgeon Management Interface");
         listModel = new DefaultListModel<>();
         listView = new JList<>(listModel);
 

@@ -12,26 +12,29 @@ public class ModelSelector extends JFrame implements ActionListener {
     private JButton doctorsButton;
     private JButton specialitiesButton;
     private JButton signOutButton;
+    private JButton medicinesButton;
 
     public ModelSelector() {
-        setTitle("Seleccionar Modelo");
+        setTitle("HOSPITAL INTERFACE");
         setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel buttonPanel = new JPanel();
 
-        patientsButton = new JButton("Pacientes");
-        surgeriesButton = new JButton("Cirugías");
-        prescriptionsButton = new JButton("Recetas");
-        doctorsButton = new JButton("Doctores");
-        specialitiesButton = new JButton("Especialidades");
-        signOutButton = new JButton("Cerrar Sesión");
+        patientsButton = new JButton("Patients");
+        surgeriesButton = new JButton("Surgeon");
+        prescriptionsButton = new JButton("Prescriptions");
+        doctorsButton = new JButton("Doctors");
+        specialitiesButton = new JButton("Specialities");
+        medicinesButton = new JButton("Medicines");
+        signOutButton = new JButton("Sign Out");
 
         patientsButton.addActionListener(this);
         surgeriesButton.addActionListener(this);
         prescriptionsButton.addActionListener(this);
         doctorsButton.addActionListener(this);
         specialitiesButton.addActionListener(this);
+        medicinesButton.addActionListener(this);
         signOutButton.addActionListener(this);
 
         buttonPanel.setLayout(new GridLayout(2, 3));
@@ -40,6 +43,7 @@ public class ModelSelector extends JFrame implements ActionListener {
         buttonPanel.add(prescriptionsButton);
         buttonPanel.add(doctorsButton);
         buttonPanel.add(specialitiesButton);
+        buttonPanel.add(medicinesButton);
         buttonPanel.add(signOutButton);
 
         add(buttonPanel, BorderLayout.CENTER);
@@ -63,6 +67,8 @@ public class ModelSelector extends JFrame implements ActionListener {
         } else if (e.getSource() == signOutButton) {
             new LoginOrRegister();
             this.dispose();
+        } else if (e.getSource() == medicinesButton) {
+            new Medicines();
         }
     }
 }

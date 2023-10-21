@@ -25,7 +25,7 @@ public class Doctors extends JFrame {
     private DoctorController controller;
 
     public Doctors() {
-        super("Doctor CRUD Interface");
+        super("Doctor Management Interface");
         listModel = new DefaultListModel<>();
         listView = new JList<>(listModel);
 

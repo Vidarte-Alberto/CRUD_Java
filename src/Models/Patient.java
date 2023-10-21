@@ -1,5 +1,7 @@
 package Models;
 
+import View.AlertDialog;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -72,7 +74,7 @@ public class Patient {
                 }
                 connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                AlertDialog.showError(e.getMessage());
             }
         }
     }

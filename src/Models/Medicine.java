@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Statement;
 
-public class Speciality {
-    private int specialityId;
+public class Medicine {
+    private int medicineId;
     private String name;
 
-    public Speciality(String name) {
+    public Medicine(String name) {
         this.name = name;
     }
 
@@ -22,27 +22,27 @@ public class Speciality {
         Connection connection = DatabaseConnection.getConnection();
         if (connection != null) {
             try {
-                if (specialityId > 0) {
-                    // Ya existe un ID de especialidad, entonces actualiza en lugar de insertar
-                    String sql = "UPDATE especialidad SET nombre = ? WHERE id_especialidad = ?";
+                if (medicineId > 0) {
+                    // Ya existe un ID de medicamento, entonces actualiza en lugar de insertar
+                    String sql = "UPDATE medicamento SET nombre = ? WHERE id_medicamento = ?";
                     PreparedStatement statement = connection.prepareStatement(sql);
                     statement.setString(1, name);
-                    statement.setInt(2, specialityId);
+                    statement.setInt(2, medicineId);
 
                     statement.executeUpdate();
                     statement.close();
                 } else {
-                    // No existe un ID de especialidad, entonces inserta uno nuevo
-                    String sql = "INSERT INTO especialidad (nombre) VALUES (?)";
+                    // No existe un ID de medicamento, entonces inserta uno nuevo
+                    String sql = "INSERT INTO medicamento (nombre) VALUES (?)";
                     PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
                     statement.setString(1, name);
 
                     statement.executeUpdate();
 
-                    // Obtener el ID de especialidad generado automáticamente
+                    // Obtener el ID de medicamento generado automáticamente
                     ResultSet generatedKeys = statement.getGeneratedKeys();
                     if (generatedKeys.next()) {
-                        specialityId = generatedKeys.getInt(1);
+                        medicineId = generatedKeys.getInt(1);
                     }
 
                     statement.close();
@@ -50,7 +50,7 @@ public class Speciality {
                 connection.close();
             } catch (SQLException e) {
                 if (e.getErrorCode() == 1452) {
-                    AlertDialog.showError("Error de clave externa (1452) - Detalles:" + "\nID Specialidad: " + specialityId + "\nNombre de la especialidad: " + name + "\nLa cirugía que intentas agregar no se puede dado que alguno de los valores no existe");
+                    AlertDialog.showError("Error de clave externa (1452) - Detalles:" + "\nID Medicamento: " + medicineId + "\nNombre de la especialidad: " + name + "\nEl medicamento que intentas agregar no se puede dado que alguno de los valores no existe");
                 } else {
                     AlertDialog.showError(e.getMessage());
                 }
@@ -58,19 +58,19 @@ public class Speciality {
         }
     }
 
-    public static Speciality retrieveFromDatabase(int specialityId) {
+    public static Medicine retrieveFromDatabase(int medicineId) {
         Connection connection = DatabaseConnection.getConnection();
         if (connection != null) {
             try {
-                String sql = "SELECT * FROM especialidad WHERE id_especialidad = ?";
+                String sql = "SELECT * FROM medicamento WHERE id_medicamento = ?";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, specialityId);
+                statement.setInt(1, medicineId);
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next()) {
                     String name = resultSet.getString("nombre");
-                    Speciality speciality = new Speciality(name);
-                    speciality.setSpecialityId(specialityId);
-                    return speciality;
+                    Medicine medicine = new Medicine(name);
+                    medicine.setMedicineId(medicineId);
+                    return medicine;
                 }
                 resultSet.close();
                 statement.close();
@@ -86,9 +86,9 @@ public class Speciality {
         Connection connection = DatabaseConnection.getConnection();
         if (connection != null) {
             try {
-                String sql = "DELETE FROM especialidad WHERE id_especialidad = ?";
+                String sql = "DELETE FROM medicamento WHERE id_medicamento = ?";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, this.specialityId);
+                statement.setInt(1, this.medicineId);
                 statement.executeUpdate();
                 statement.close();
                 connection.close();
@@ -98,20 +98,20 @@ public class Speciality {
         }
     }
 
-    public static ArrayList<Speciality> getAllSpecialities() {
-        ArrayList<Speciality> specialities = new ArrayList<>();
+    public static ArrayList<Medicine> getAllMedicines() {
+        ArrayList<Medicine> medicines = new ArrayList<>();
         Connection connection = DatabaseConnection.getConnection();
         if (connection != null) {
             try {
-                String sql = "SELECT * FROM especialidad";
+                String sql = "SELECT * FROM medicamento";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);
                 while (resultSet.next()) {
-                    int specialityId = resultSet.getInt("id_especialidad");
+                    int medicineId = resultSet.getInt("id_medicamento");
                     String name = resultSet.getString("nombre");
-                    Speciality speciality = new Speciality(name);
-                    speciality.setSpecialityId(specialityId);
-                    specialities.add(speciality);
+                    Medicine medicine = new Medicine(name);
+                    medicine.setMedicineId(medicineId);
+                    medicines.add(medicine);
                 }
                 resultSet.close();
                 statement.close();
@@ -120,20 +120,20 @@ public class Speciality {
                 e.printStackTrace();
             }
         }
-        return specialities;
+        return medicines;
     }
 
     @Override
     public String toString() {
-        return "Speciality ID: " + getSpecialityId() + ", Name: " + getName();
+        return "Medicine ID: " + getMedicineId() + ", Name: " + getName();
     }
 
-    public int getSpecialityId() {
-        return specialityId;
+    public int getMedicineId() {
+        return medicineId;
     }
 
-    public void setSpecialityId(int specialityId) {
-        this.specialityId = specialityId;
+    public void setMedicineId(int medicineId) {
+        this.medicineId = medicineId;
     }
 
     public String getName() {
