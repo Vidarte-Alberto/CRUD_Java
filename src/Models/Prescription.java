@@ -156,6 +156,20 @@ public class Prescription {
         return prescriptions;
     }
 
+    @Override
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String initialDateString = (initialDate != null) ? dateFormat.format(initialDate) : "N/A";
+        String finishDateString = (finishDate != null) ? dateFormat.format(finishDate) : "N/A";
+
+        return "Prescription ID: " + prescriptionId +
+                "\nPatient ID: " + patientId +
+                "\nMedicine ID: " + medicineId +
+                "\nDose: " + dose +
+                "\nInitial Date: " + initialDateString +
+                "\nFinish Date: " + finishDateString;
+    }
+
     public int getPrescriptionId() {
         return prescriptionId;
     }
